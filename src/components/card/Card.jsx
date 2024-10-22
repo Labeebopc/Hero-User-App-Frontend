@@ -4,7 +4,7 @@ import { Card, CardHeader, CardMedia, CardContent, CardActions, IconButton, Typo
 const CustomCard = ({ posts }) => {
 
     const handleShare = (post) => {
-        const shareUrl = `${window.location.origin}/post/${post._id}`;
+        const shareUrl = `${window.location.origin}/post/${post?._id}`;
         navigator.clipboard.writeText(shareUrl).then(() => {
             alert('Link copied to clipboard!');
         })
