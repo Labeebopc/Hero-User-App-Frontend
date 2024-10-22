@@ -4,10 +4,29 @@ import { Card, CardHeader, CardMedia, CardContent, CardActions, IconButton, Typo
 const CustomCard = ({ posts }) => {
 
     const handleShare = (post) => {
+        console.log(post?._id)
         const shareUrl = `${window.location.origin}/post/${post?._id}`;
-        navigator.clipboard.writeText(shareUrl).then(() => {
-            alert('Link copied to clipboard!');
-        })
+        // navigator.clipboard.writeText(shareUrl).then(() => {
+        //     alert('Link copied to clipboard!');
+        // })
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            // Primary method using Clipboard API
+            navigator.clipboard.writeText(shareUrl).then(() => {
+                alert('Link copied to clipboard!');
+            }).catch((err) => {
+                console.error('Failed to copy: ', err);
+            });
+        } else {
+            // Fallback method if Clipboard API is unavailable
+            const tempInput = document.createElement('input');
+            tempInput.value = shareUrl;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('Link copied to clipboard using fallback!');
+        }
 
     }
 
