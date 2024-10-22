@@ -2,8 +2,13 @@ import React from "react";
 import { Card, CardHeader, CardMedia, CardContent, CardActions, IconButton, Typography, Box, Button } from "@mui/material";
 
 const CustomCard = ({ posts }) => {
+
     const handleShare = (post) => {
-        alert("Share");
+        const shareUrl = `${window.location.origin}/post/${post._id}`;
+        navigator.clipboard.writeText(shareUrl).then(() => {
+            alert('Link copied to clipboard!');
+        })
+
     }
 
     return (
@@ -47,7 +52,7 @@ const CustomCard = ({ posts }) => {
                                 </Typography>
                             </CardActions>
                             <CardActions>
-                                <Button variant="contained" onclick={()=>handleShare(post?.postImage)}>Share</Button>
+                                <Button variant="contained" onClick={() => handleShare(post)}>Share</Button>
                             </CardActions>
                         </Card>
                     ))

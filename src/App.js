@@ -8,6 +8,7 @@ import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import { Box } from '@mui/material'
 import { Dashboard } from './components/dashboard/Dashboard';
+import { SinglePost } from './components/single_post/SinglePost';
 import Form from './components/form/Form';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
               {/* <Route exact path='/' element={<Login />} /> */}
               <Route exact path='/dashboard' element={<Dashboard />} />
               <Route exact path='/post' element={<Form />} />
+              <Route exact path='/post/:id' element={<SinglePost />} />
           </Routes >
       </Box>
     </>
